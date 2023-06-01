@@ -84,7 +84,7 @@ input::-ms-clear {
 }
 
 button,
-input[type='submit'] {
+input[type="submit"] {
   display: inline-block;
   box-shadow: none;
   background: none;
@@ -111,3 +111,6 @@ legend {
   display: block;
 }
 
+body {
+  font-family: "Roboto", sans-serif;
+}
