@@ -1,0 +1,47 @@
+.button {
+  background-color: #006bb4;
+  border-color: #006bb4;
+  text-align: center;
+  white-space: nowrap;
+  max-width: 100%;
+  color: #fff;
+  padding: 8px 12px;
+  box-shadow: 0 2px 2px -1px rgba(54, 97, 126, 0.3);
+  border-radius: 4px;
+  min-width: 112px;
+  width: 100%;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    background-color: #044c7d;
+    transition: all 0.2s ease-in-out;
+    text-decoration: underline;
+    transform: translateY(-1px);
+  }
+  &:active {
+    transform: translateY(0);
+  }
+
+  &.success {
+    background-color: #017d73;
+    &:hover {
+      background-color: #02655d;
+    }
+  }
+
+  &.error {
+    background-color: #bc4047;
+    &:hover {
+      background-color: #a9393f;
+    }
+  }
+  &.disabled {
+    color: #88888b !important;
+    background-color: #c2c3c6 !important;
+    cursor: not-allowed;
+    &:hover {
+      transform: translateY(0);
+      text-decoration: none;
+    }
+  }
+}
