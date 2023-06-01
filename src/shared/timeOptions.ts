@@ -1,3 +1,7 @@
+import moment from "moment";
+import dateMath from "./dateMath";
+import _isString from "lodash/isString";
+
 export interface RelativeOption {
   text: string;
   value: TimeUnitAllId;
@@ -65,7 +69,7 @@ export const relativeOptions: RelativeOption[] = [
   },
 ];
 
-const relativeRoundingLabels = {
+export const relativeRoundingLabels = {
   s: "Round to the second",
   m: "Round to the minute",
   h: "Round to the hour",
