@@ -25,7 +25,8 @@
       "@hooks/*": ["./src/hooks/*"],
       "@assets/*": ["./src/assets/*"]
     },
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+	  "allowSyntheticDefaultImports": true
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
