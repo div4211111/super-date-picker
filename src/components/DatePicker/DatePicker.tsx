@@ -3,7 +3,7 @@ import styles from "./DatePicker.module.scss";
 import "react-datepicker/dist/react-datepicker.css";
 import { DatePickerProps } from "./DatePicker.props";
 import DatePickerPackage from "react-datepicker";
-import moment from "moment";
+import { DateInput } from "@components/DateInput/DateInput";
 
 const DatePicker = memo(
   ({ date, setDate, name }: DatePickerProps): JSX.Element => {
@@ -21,18 +21,7 @@ const DatePicker = memo(
           open
           inline
         />
-
-        <div className={styles.inputContainer}>
-          <label htmlFor="" className={styles.label}>
-            {name}
-          </label>
-          <input
-            type="text"
-            className={styles.input}
-            readOnly
-            value={moment(date).format("MMMM Do YYYY, h:mm:ss a")}
-          />
-        </div>
+        <DateInput name={name} date={date} />
       </div>
     );
   }
