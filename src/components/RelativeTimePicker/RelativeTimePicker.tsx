@@ -9,27 +9,21 @@ import {
   TimeUnitId,
 } from "@shared/timeOptions";
 import { DateInput } from "@components/DateInput/DateInput";
-import { toRelativeStringFromParts } from "@shared/relativeUtils";
+import {
+  parseRelativeParts,
+  toRelativeStringFromParts,
+} from "@shared/relativeUtils";
 import dateMath from "@shared/dateMath";
+import { ShortDate } from "@shared/types";
 
 const RelativeTimePicker = memo(
   ({ name, date, setDate }: RelativeTimePickerProps) => {
-    const [count, setCount] = useState<number>(1);
-    const [unit, setUnit] = useState<TimeUnitAllId>("s");
-    const [round, setRound] = useState<boolean>(false);
+    const [count, setCount] = useState<number>(parseRelativeParts(date).count);
+    const [unit, setUnit] = useState<TimeUnitAllId>(
+      parseRelativeParts(date).unit as TimeUnitAllId
+    );
+    const [round, setRound] = useState<boolean>(parseRelativeParts(date).round);
     const [errorValue, setErrorValue] = useState<string>("");
-    const changeValueHandler = (event: ChangeEvent<HTMLInputElement>) => {
-      if (parseInt(event.target.value) <= 0) {
-        setErrorValue("Must be >= 0");
-      } else {
-        setErrorValue("");
-      }
-
-      setCount(parseInt(event.target.value));
-    };
-    const changeUnitHandler = (event: ChangeEvent<HTMLSelectElement>) => {
-      setUnit(event.target.value as TimeUnitAllId);
-    };
 
     const setDateHandler = () => {
       if (count === undefined || count <= 0) {
@@ -40,17 +34,29 @@ const RelativeTimePicker = memo(
         unit,
         round,
       });
-      const parsedDate = dateMath.parse(date)?.toDate();
-      if (!parsedDate) {
-        return;
-      }
-      setDate(parsedDate);
+      setDate(date);
     };
 
+    const changeUnitHandler = (event: ChangeEvent<HTMLSelectElement>) => {
+      setUnit(event.target.value as TimeUnitAllId);
+    };
+
+    const changeRoundHandler = () => {
+      setRound((prev) => !prev);
+    };
+
+    const changeValueHandler = (event: ChangeEvent<HTMLInputElement>) => {
+      if (parseInt(event.target.value) <= 0) {
+        setErrorValue("Must be >= 0");
+      } else {
+        setErrorValue("");
+      }
+
+      setCount(parseInt(event.target.value));
+    };
     useEffect(() => {
       setDateHandler();
-    }, [unit, round, count]);
-
+    }, [count, unit, round]);
     return (
       <div className={styles.relativeTimePicker}>
         <div className={styles.inputs}>
@@ -69,15 +75,20 @@ const RelativeTimePicker = memo(
         <div className={styles.rounded}>
           <input
             type="checkbox"
-            id={"rounded-checkbox"}
+            id={"rounded-checkbox" + name}
             checked={round}
-            onChange={() => setRound((prev) => !prev)}
+            onChange={() => changeRoundHandler()}
           />
-          <label htmlFor="rounded-checkbox">
+          <label htmlFor={"rounded-checkbox" + name}>
             {relativeRoundingLabels[unit.substring(0, 1) as TimeUnitId]}
           </label>
         </div>
-        <DateInput name={name} date={date} />
+        <DateInput
+          name={name}
+          date={
+            dateMath.parse(date)?.format("MMMM Do YYYY, h:mm:ss a") as ShortDate
+          }
+        />
       </div>
     );
   }
