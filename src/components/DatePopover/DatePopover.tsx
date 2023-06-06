@@ -4,9 +4,8 @@ import { usePopper } from "react-popper";
 import styles from "./DatePopover.module.scss";
 import cn from "classnames";
 import { DatesContainer } from "..";
-import { getDateMode, toRelativeString } from "@shared/dateModes";
-import { DateMode, ShortDate } from "@shared/types";
-import dateMath from "@shared/dateMath";
+import { getDateMode } from "@shared/dateModes";
+import { DateMode } from "@shared/types";
 
 const DatePopover = memo(
   ({
