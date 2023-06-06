@@ -9,12 +9,7 @@ const DateInput = memo(({ name, date }: DateInputProps): JSX.Element => {
       <label htmlFor="" className={styles.label}>
         {name}
       </label>
-      <input
-        type="text"
-        className={styles.input}
-        readOnly
-        value={moment(date).format("MMMM Do YYYY, h:mm:ss a")}
-      />
+      <input type="text" className={styles.input} readOnly value={date} />
     </div>
   );
 });
