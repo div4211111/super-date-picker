@@ -44,4 +44,7 @@
       text-decoration: none;
     }
   }
+  @media (max-width: 500px) {
+    min-width: auto;
+  }
 }
