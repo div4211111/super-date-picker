@@ -1,0 +1,107 @@
+.dateButton {
+  height: 100%;
+  width: 100%;
+  padding: 0 8px;
+  border-bottom: 2px solid transparent;
+  text-overflow: clip;
+  white-space: nowrap;
+  transition: all 0.2s ease-in-out;
+  overflow: hidden;
+  &.dateButtonStart {
+    text-align: right;
+  }
+  &.dateButtonEnd {
+    text-align: left;
+  }
+  &.active {
+    border-bottom: 2px solid #044c7d;
+    transition: all 0.2s ease-in-out;
+  }
+  &:active {
+    border-bottom: 2px solid #044c7d;
+    transition: all 0.2s ease-in-out;
+  }
+  &.success {
+    background-color: #e6f2f1;
+    color: #01776d;
+  }
+  &.error {
+    background-color: #f8e9e9;
+    color: #bd271e;
+  }
+}
+
+.popper {
+  position: absolute;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 14px;
+  transition: opacity 0.3s;
+  opacity: 0;
+  pointer-events: none;
+  width: 100%;
+  max-width: 400px;
+  &[data-popper-placement^="bottom"] > .arrow {
+    top: -0.75em;
+    width: 1.5em;
+  }
+
+  &[data-popper-placement^="bottom"] > .arrow:before {
+    top: 100%;
+  }
+  &[data-popper-placement^="top"] > .arrow {
+    bottom: -0.75em;
+    width: 1.5em;
+  }
+
+  &[data-popper-placement^="top"] > .arrow:before {
+    top: 0;
+  }
+
+  &[data-popper-placement^="left"] > .arrow {
+    right: -0.75em;
+    height: 1.5em;
+  }
+
+  &[data-popper-placement^="left"] > .arrow:before {
+    left: 0;
+  }
+
+  &[data-popper-placement^="right"] > .arrow {
+    left: -0.75em;
+    height: 1.5em;
+  }
+  &[data-popper-placement^="right"] > .arrow:before {
+    left: 100%;
+  }
+
+  visibility: hidden;
+  z-index: -1;
+
+  .arrow {
+    position: absolute;
+    width: 0.75em;
+    height: 0.75em;
+    overflow: hidden;
+  }
+
+  .arrow::before {
+    content: "";
+    position: absolute;
+    width: 0.75em;
+    height: 0.75em;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    background: ivory;
+    border: 1px solid #ccc;
+  }
+  &.open {
+    z-index: 999;
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+  }
+}
