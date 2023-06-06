@@ -1,0 +1,34 @@
+.datesContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px;
+}
+
+.buttonsTitle {
+  display: flex;
+  border-bottom: 1px solid #ccc;
+  width: 100%;
+}
+.buttonTitle {
+  padding: 8px;
+  flex: 1 1 33.333%;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    color: #044c7d;
+    text-decoration: underline;
+    border-bottom: 2px solid #044c7d;
+    transition: all 0.2s ease-in-out;
+  }
+  &.active {
+    color: #044c7d;
+    text-decoration: underline;
+    border-bottom: 2px solid #044c7d;
+  }
+}
+
+.content {
+  padding: 8px;
+  width: 100%;
+}
